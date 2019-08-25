@@ -1,16 +1,21 @@
 #!/bin/bash
 
 #Define variables here
-$USERNAME = ""
-$PASSWORD = ""
-$ROOTPASSWORD = ""
-$CONTINENT = ""
-$COUNTRY_CAPITAL_NAME = ""
-$LANG = ""
-$HOSTNAME = ""
+USERNAME = "user1"
+PASSWORD = "1234"
+ROOTPASSWORD = "admin123"
+CONTINENT = "Europe"
+COUNTRY_CAPITAL_NAME = "Oslo"
+LANG = "en_US.UTF-8"
+LOCALE = "nb_NO.UTF-8 UTF-8"
+KEYMAP = "no-latin1"
+HOSTNAME = "tester"
 
 
-#Connect to wifi
+
+#Connect to internet
+ip link
+systemctl enable dhcpcd
 wifi-menu
 
 #Set time and date
@@ -82,6 +87,25 @@ genfstab -U /mnt >> /mnt/etc/fstab
 # Log into arch system (change from USB to HDD)
 arch-chroot /mnt
 
+# Generate locale-settings
+ln -sf /usr/share/zoneinfo/$CONTINENT/$COUNTRY_CAPITAL_NAME /etc/localtime
+hwclock --systohc
+
+echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+echo $LOCALE >> /etc/locale.gen
+locale-gen
+
+echo LANG=$LANG >> /etc/locale.conf
+echo KEYMAP=$KEYMAP >> /etc/vconsole.conf
+
+# Set a hostname
+echo $HOSTNAME > /etc/hostname
+
+#Add hosts entries
+echo 127.0.0.1 \t localhost >> /etc/hosts
+echo ::1 \t localhost >> /etc/hosts
+echo 127.0.1.1 \t $HOSTNAME.localdomain \t $HOSTNAME >> /etc/hosts
+
 #Install network manager
 pacman -S networkmanager
 systemctl enable NetworkManager
@@ -95,22 +119,11 @@ grub-mkconfig -o /boot/grub/grub.cfg
 passwd # Root
 
 #Generate a non-root user
-useradd -m chrystallic
-passwd chrystallic
-usermod -aG wheel chrystallic
-mkdir -p /home/chrystallic
-chown chrystallic:wheel /home/chrystallic
-
-
-# Generate locale-settings
-nano /etc/locale.gen
-locale-gen
-
-echo LANG=en-US.UTF-8 >> /etc/locale.conf
-ln -sf /usr/share/zoneinfo/Europe/Oslo /etc/localtime
-
-# Set a hostname
-echo kraken >> /etc/hostname
+useradd -m $USERNAME
+passwd $USERNAME
+usermod -aG wheel $USERNAME
+mkdir -p /home/$USERNAME
+chown $USERNAME:wheel /home/$USERNAME
 
 # Unmount and reboot pc
 exit
