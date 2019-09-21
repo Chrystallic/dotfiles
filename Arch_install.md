@@ -30,7 +30,8 @@
         wifi-menu
         ```
 
-3. Update the package repository, and update the mirrorlist(for your country)
+3. Update the package repository, and update the mirrorlist(for your country)\
+    Don't do this if you don't know what it does in detail
     ``` sh
     pacman -Syy
     pacman -S reflector
