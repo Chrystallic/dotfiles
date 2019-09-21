@@ -190,6 +190,9 @@
 
     # Install window manager and statusbar(s) WM=bspwm, statusbar=polybar, monitor=conky
     sudo pacman -S bspwm polybar conky sxhkd
+    
+    # Install a browser and terminal
+    sudo pacman -S chromium rxvt-unicode
 
     # Add WM to your xinitrc file to startx knows what to initiate when called
     echo "exec sxhkd &" > ~/.xinitrc
