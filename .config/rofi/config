@@ -1,0 +1,4 @@
+rofi.theme: main.rasi
+rofi.drun-icon-theme: Tela-grey-dark
+rofi.click-to-exit: true
+rofi.font: undefined 12
