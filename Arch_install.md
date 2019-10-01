@@ -31,7 +31,7 @@
         ```
 
 3. Update the package repository, and update the mirrorlist(for your country)\
-    Don't do this if you don't know what it does in detail
+    DO THIS IF AND ONLY IF YOU KNOW WHAT THIS DOES, MIGHT DELETE/DESTROY YOUR mirrorlist!
     ``` sh
     pacman -Syy
     pacman -S reflector
