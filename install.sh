@@ -17,7 +17,25 @@ mkdir ~/.config/sxhkd
 curl https://raw.githubusercontent.com/baskerville/bspwm/master/examples/sxhkdrc --output sxhkd/sxhkdrc
 
 # Download program such as file managers unpackagers etc,
-sudo pacman -S tumbler xbindkeys binutils dunst xclip zathura-pdf-mupdf neovim flashplugin thunar ranger raw-thumbnailer unzip unrar compton file-roller clang scrot xf86-input-synaptics
+sudo pacman -S  tumbler 
+                xbindkeys 
+                binutils 
+                dunst 
+                xclip 
+                zathura-pdf-mupdf 
+                neovim 
+                flashplugin 
+                thunar 
+                ranger 
+                raw-thumbnailer 
+                unzip 
+                unrar 
+                compton 
+                file-roller 
+                clang 
+                scrot 
+                xf86-input-synaptics
+                pacman-contrib
 
 # Install yay to get access to the AUR
 git clone https://aur.archlinux.org/yay.git
@@ -26,7 +44,20 @@ makepkg -si
 cd .. && rm -r yay/
 
 # Install AUR packages
-yay -S lightdm-gtk-greeter-settings feh neofetch polybar rofi lxappearance numix-icon-theme-git siji-git ttf-unifont ttf-font-awesome ttf-anonymous-pro noto-fonts 
+yay -S  lightdm-gtk-greeter-settings 
+        feh 
+        neofetch 
+        polybar 
+        rofi 
+        lxappearance 
+        numix-icon-theme-git 
+        siji-git 
+        ttf-unifont 
+        ttf-font-awesome 
+        ttf-anonymous-pro 
+        noto-fonts 
+        compton-tryone-git
+        conky
 
 
 
