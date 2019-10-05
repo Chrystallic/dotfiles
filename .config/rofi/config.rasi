@@ -1,0 +1,169 @@
+configuration {
+    auto-select:            false;
+    combi-modi:             "window,drun";
+    display-combi:          "⌘ COMBI";
+    display-drun:           "⎇ DRUN";
+    display-run:            "⌥ RUN";
+    display-ssh:            "⌤ SSH";
+    display-window:         "⋈";
+    icon-theme:             "Papirus";
+    fake-background:        "background";
+    fake-transparency:      true;
+    fullscreen:             true;
+    me-accept-entry:        "MousePrimary";
+    me-select-entry:        "MouseSecondary";
+    modi:                   "combi,run,ssh";
+    monitor:                "-4";
+    scroll-method:          0;
+    show-icons:             true;
+    sidebar-mode:           true;
+    sort:                   true;
+    sorting-method:         "fzf";
+    terminal:               "urxvt";
+    window-format:          "{w} {t:0}";
+}
+
+@import "~/.config/rofi/colors.rasi"
+
+
+* {
+    font:                   "Iosevka 12";
+    scrollbar:              false;
+}
+
+window {
+    background-color:   @transparent;
+    border:             0;
+    padding:            0;
+}
+
+mainbox {
+    background-color:   @transparent;
+    border:             0;
+    margin:             13% 34%;
+}
+
+message {
+    border:             2px 0 0;
+    border-color:       @separatorcolor;
+    padding:            1px;
+}
+
+textbox {
+    highlight:      @highlight;
+    text-color:     @foreground;
+}
+
+listview {
+    background-color:   transparent;
+    border:             0;
+    border-color:       @separatorcolor;
+    spacing:            3px;
+    scrollbar:          @scrollbar;
+    padding:      8px;
+}
+
+element {
+    background-color:       transparent;
+    padding:                3px;
+    border:                 0;
+}
+
+element.normal.normal {
+    text-color:             @normal-foreground;
+}
+
+element.normal.urgent {
+    text-color:             @urgent-foreground;
+}
+
+element.normal.active {
+    background-color:       @active-background;
+    text-color:             @active-foreground;
+}
+
+element,
+button {
+    /*border-radius:  3px;*/
+}
+
+element.selected.normal {
+    background-color:   @selected-normal-background;
+    text-color:         @selected-normal-foreground;
+}
+
+element.selected.urgent {
+    background-color:   @selected-urgent-background;
+    text-color:         @selected-urgent-foreground;
+}
+
+element.selected.active {
+    background-color:   @selected-active-background;
+    text-color:         @selected-active-foreground;
+}
+
+element.alternate.normal {
+    text-color:         @alternate-normal-foreground;
+}
+
+element.alternate.urgent {
+    text-color:         @alternate-urgent-foreground;
+}
+
+element.alternate.active {
+    background-color:   @alternate-active-background;
+    text-color:         @alternate-active-foreground;
+}
+
+scrollbar {
+    background-color:   transparent;
+    border:             0;
+    handle-color:       @scrollbar-handle;
+    handle-width:       3px;
+    padding:            0 3px;
+    width:              1px;
+}
+
+sidebar {
+    background-color:   transparent;
+    border-color:       @separatorcolor;
+    border:             0;
+    spacing:            0 13px 0 13px;
+}
+
+inputbar {
+    children:           [ prompt, textbox-prompt-sep, entry, case-indicator ];
+    padding:            13px;
+    spacing:            0;
+    text-color:         @normal-foreground;
+}
+
+case-indicator,
+entry,
+prompt,
+button {
+    background-color:   transparent;
+    padding:            3px 6px;
+    spacing:            0;
+    text-color:         @normal-foreground;
+}
+
+prompt {
+    enabled:    false;
+}
+
+button {
+    background-color:   @background;
+}
+
+button.selected {
+    background-color:   @selected-normal-background;
+    text-color:         @selected-normal-foreground;
+}
+
+textbox-prompt-sep {
+    expand:         false;
+    str:            "";
+    text-color:     @normal-foreground;
+    margin:         0 0.3em 0 0;
+}

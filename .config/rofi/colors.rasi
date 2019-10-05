@@ -1,20 +1,51 @@
 * {
-    xbg:    #1D1F28;
-    xfg:    #FDFDFD;
-    x0:     #282A36;
-    x1:     #F37F97;
-    x2:     #5ADECD;
-    x3:     #F2A272;
-    x4:     #8897F4;
-    x5:     #C574DD;
-    x6:     #79E6F3;
-    x7:     #FDFDFD;
-    x8:     #414458;
-    x9:     #FF4971;
-    x10:    #18E3C8;
-    x11:    #FF8037;
-    x12:    #556FFF;
-    x13:    #52616b;
-    x14:    #3FDCEE;
-    x15:    #FDFDFD;
+    xbg:    #282828;
+    trans:  #282828cc;
+    xfg:    #ebdbb2;
+    x0:     #282828;
+    x1:     #cc241d;
+    x2:     #98971a;
+    x3:     #d79921;
+    x4:     #458588;
+    x5:     #b16286;
+    x6:     #689d6a;
+    x7:     #c0b9b0;
+    x8:     #928374;
+    x9:     #fb4934;
+    x10:    #b8bb26;
+    x11:    #fabd2f;
+    x12:    #83a598;
+    x13:    #d3869b;
+    x14:    #8ec07c;
+    x15:    #ebdbb2;
+
+    /* Theme colors */
+    background:                  @xbg;
+    background-color:            @xbg;
+    transparent:                 @trans;
+    foreground:                  @xfg;
+    border-color:                @x8;
+    separatorcolor:              @x7;
+    scrollbar-handle:            @xfg;
+
+    normal-background:           @xbg;
+    normal-foreground:           @xfg;
+    alternate-normal-background: @xbg;
+    alternate-normal-foreground: @xfg;
+    selected-normal-background:  @xbg;
+    selected-normal-foreground:  @x5;
+
+    active-background:           @xbg;
+    active-foreground:           @x4;
+    alternate-active-background: @xbg;
+    alternate-active-foreground: @x3;
+    selected-active-background:  @xbg;
+    selected-active-foreground:  @x11;
+
+    urgent-background:           @xbg;
+    urgent-foreground:           @x1;
+    alternate-urgent-background: @xbg;
+    alternate-urgent-foreground: @x9;
+    selected-urgent-background:  @xbg;
+    selected-urgent-foreground:  @x1;
 }
