@@ -8,7 +8,7 @@ sh ~/.config/conky/launch.sh &
 sh ~/.config/polybar/launch.sh &
 
 # Set wallpaper, and terminal theme
-feh --bg-scale ~/.config/wallpaper.jpg &
+feh --bg-scale ~/.config/wallpaper.png &
 # wal -i ~/.config/wallpaper.jpg & # Deprecated because decided on gruvbox colorcheme(do not want to change Xresources file) 
 
 # Set monitor orientation
