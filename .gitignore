@@ -3,23 +3,23 @@
 
 ## Except these files
 # Files in ~/
-!.xinitrc
-!.Xresources
-!.Xauthority
-!.Xdefaults
-!.gitignore
-!.zshrc
+! .xinitrc
+! .Xresources
+! .Xauthority
+! .Xdefaults
+! .gitignore
+! .zshrc
 
 # Fonts
-!.local/share/fonts/Iosevka Nerd Font Complete.ttf
+! .local/share/fonts/Iosevka Nerd Font Complete.ttf
 
 # .config files
-!.config/bspwm/*
-!.config/compton/*
-!.config/conky/*
-!.config/mpd/*
-!.config/nvim/*
-!.config/polybar/*
-!.config/rofi/*
-!.config/sxhkd/*
-!.config/wallpaper.png*
+! .config/bspwm/*
+! .config/compton/*
+! .config/conky/*
+! .config/mpd/*
+! .config/nvim/*
+! .config/polybar/*
+! .config/rofi/*
+! .config/sxhkd/*
+! .config/wallpaper.png*

@@ -1,31 +1,112 @@
 #!/usr/bin/env sh
-alias ka="killall" \
-	mkd="mkdir -pv" \
-	mpv="mpv --input-ipc-server=/tmp/mpvsoc$(date +%s)" \
-	calcurse="calcurse -D ~/.config/calcurse" \
-	magit="nvim -c MagitOnly" \
-	p="sudo pacman" \
-	SS="sudo systemctl" \
-	f="$FILE" \
-	g="git" \
-	trem="transmission-remote" \
-	e="$EDITOR" \
-	v="$EDITOR" \
-	x="sxiv -ft *" \
-	sdn="sudo shutdown -h now" \
-	gua="git remote | xargs -L1 git push --all" \
-	ls="ls -hN --color=auto --group-directories-first" \
-	grep="grep --color=auto" \
-	diff="diff --color=auto" \
-	ccat="highlight --out-format=ansi" \
-	yt="youtube-dl --add-metadata -i -o '%(upload_date)s-%(title)s.%(ext)s'" \
-	yta="yt -x -f bestaudio/best" \
-	YT="youtube-viewer" \
-	ref="shortcuts >/dev/null; source ~/.config/shortcutrc" \
-	upc="sudo pacman -Syu; pkill -RTMIN+8 i3blocks" \
-	lsp="pacman -Qett --color=always | less" \
-	ffmpeg="ffmpeg -hide_banner"
+
+## Shorthands
+alias ka="killall"
+alias magit="nvim -c MagitOnly" 
+alias SS="sudo systemctl" 
+alias sdn="sudo shutdown -h now" 
+alias upc="sudo pacman -Syu; pkill -RTMIN+8 i3blocks" 
+alias lsp="pacman -Qett --color=always | less" 
+alias yt="youtube-dl --add-metadata -i -o '%(upload_date)s-%(title)s.%(ext)s'" 
+alias yta="yt -x -f bestaudio/best"
 
 command -v nvim >/dev/null && alias vim="nvim" vimdiff="nvim -d" # Use neovim for vim if present.
 
 vf() { fzf | xargs -r -I % $EDITOR % ;}
+
+
+## Modified commands
+alias diff='diff --color=auto' 
+alias grep='grep -i --color=auto'
+alias more='less'
+alias df='df -h'
+alias du='du -c -h'
+alias mkdir='mkdir -p -v'
+alias nano='nano -w'
+alias ping='ping -c 5'
+alias dmesg='dmesg -HL'
+alias pacman="sudo pacman" 
+alias ffmpeg="ffmpeg -hide_banner"
+alias mpv="mpv --input-ipc-server=/tmp/mpvsoc$(date +%s)"
+
+
+## New commands
+alias da='date "+%A, %B %d, %Y [%T]"'
+alias du1='du --max-depth=1'
+alias hist='history | grep'         # requires an argument
+alias openports='ss --all --numeric --processes --ipv4 --ipv6'
+alias pgg='ps -Af | grep'           # requires an argument
+alias ..='cd ..'
+
+
+# Privileged access
+if (( UID != 0 )); then
+    alias sudo='sudo '
+    alias scat='sudo cat'
+    alias svim='sudoedit'
+    alias root='sudo -i'
+    alias reboot='sudo systemctl reboot'
+    alias poweroff='sudo systemctl poweroff'
+    alias update='sudo pacman -Su'
+    alias netctl='sudo netctl'
+fi
+
+
+## Git
+alias g='git' 
+alias ga='git add'
+alias gc='git commit'
+alias gf='git fetch'
+alias gP='git push'
+alias gG='git pull'
+alias gua="git remote | xargs -L1 git push --all" 
+
+
+
+## Docker
+alias dk='docker'
+alias dkl='docker logs'
+alias dklf='docker logs -f'
+alias dl='docker ps -l -q'											# Get lates container ID
+alias dps='docker ps'												# Get container process
+alias dpa='docker ps -a'											# Get process included stopped containers
+alias di='docker images'											# Get images
+alias dip='docker inspect --format '{{ .NetworkSettings.IPAddress }}''			# Get container IP
+alias dkd='docker run -d -P'										# Run deamonized container, e.g., $dkd base /bin/echo hello
+alias dki='docker run -i -t -P'										# Run interactive container, e.g., $dki base /bin/bash
+alias dex='docker exec -i -t'										# Execute interactive container, e.g., $dex base /bin/bash
+dstop() { docker stop $(docker ps -a -q); }							# Stop all containers
+drm() { docker rm $(docker ps -a -q); }								# Remove all containers
+alias drmf='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'		# Stop and remove all containers
+dri() { docker rmi $(docker images -q); }							# Remove all images
+dbu() { docker build -t=$1 .; }										# Dockerfile build, e.g., $dbu tcnksm/test
+dbash() { docker exec -it $(docker ps -aqf 'name=$1') bash; }		# Bash into running container
+
+
+## ls
+alias ls='ls -hF --color=auto --group-directories-first'
+alias lr='ls -R'                    # recursive ls
+alias ll='ls -l'
+alias la='ll -A'
+alias lx='ll -BX'                   # sort by extension
+alias lz='ll -rS'                   # sort by size
+alias lt='ll -rt'                   # sort by date
+alias lm='la | more'
+
+## Safety features
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -I'                    # 'rm -i' prompts for every file
+# safer alternative w/ timeout, not stored in history
+alias rm=' timeout 3 rm -Iv --one-file-system'
+alias ln='ln -i'
+alias chown='chown --preserve-root'
+alias chmod='chmod --preserve-root'
+alias chgrp='chgrp --preserve-root'
+alias cls=' echo -ne "\033c"'       # clear screen for real (it does not work in Terminology)
+
+## Make Bash error tolerant
+alias :q=' exit'
+alias :Q=' exit'
+alias :x=' exit'
+alias cd..='cd ..'
